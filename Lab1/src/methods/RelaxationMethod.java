@@ -7,7 +7,7 @@ public class RelaxationMethod extends AbstractMethod {
     }
 
     public void performCalculation() {
-        double M1 = 6, m1 = 2;
+        double M1 = 10, m1 = 0;
         double tau = -2.0 / (M1 + m1);
         double x1 = A;
         double x = Double.MAX_VALUE;
