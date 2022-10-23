@@ -2,18 +2,18 @@ package methods.gaussian;
 
 public class LUDecomposition {
 
-    private int[][] lowerDecomposedMatrix;
-    private int[][] upperDecomposedMatrix;
+    private double[][] lowerDecomposedMatrix;
+    private double[][] upperDecomposedMatrix;
 
-    public LUDecomposition(int[][] matrix) {
+    public LUDecomposition(double[][] matrix) {
         decompose(matrix);
     }
 
-    private void decompose(int[][] matrix) {
+    private void decompose(double[][] matrix) {
         int size = 5;
 
-        int[][] lowerMatrix = new int[size][size];
-        int[][] upperMatrix = new int[size][size];
+        double[][] lowerMatrix = new double[size][size];
+        double[][] upperMatrix = new double[size][size];
 
         //Matrix decomposition into upper and
         //lower triangular matricies
@@ -44,11 +44,11 @@ public class LUDecomposition {
         upperDecomposedMatrix = upperMatrix;
     }
 
-    public int[][] getLowerDecomposedMatrix() {
+    public double[][] getLowerDecomposedMatrix() {
         return lowerDecomposedMatrix;
     }
 
-    public int[][] getUpperDecomposedMatrix() {
+    public double[][] getUpperDecomposedMatrix() {
         return upperDecomposedMatrix;
     }
 }
