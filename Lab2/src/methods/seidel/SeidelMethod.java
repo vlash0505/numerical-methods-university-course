@@ -49,6 +49,6 @@ public class SeidelMethod extends AbstractMethod {
         }
         while (s > EPS && delta > EPS);
 
-        printResult(X0);
+        printResult(X);
     }
 }

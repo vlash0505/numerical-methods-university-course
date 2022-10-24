@@ -24,10 +24,14 @@ public class Utils {
         return matrix;
     }
 
-    public static double[] buildVectorB() {
-        double[] vectorB = new double[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            vectorB[i] = new Random().nextDouble(10.0);
+    public static double[] buildVectorB(double[][] matrix) {
+        int N = matrix.length;
+        double[] vectorB = new double[N];
+        for (int i = 0; i < N; i++) {
+            vectorB[i] = 0;
+            for (int j = 0; j < N; j++) {
+                vectorB[i] += matrix[i][j];
+            }
         }
         return vectorB;
     }

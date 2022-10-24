@@ -1,4 +1,4 @@
-import methods.AbstractMethod;
+import methods.gaussian.GaussMethod;
 import methods.jacobi.JacobiMethod;
 import methods.seidel.SeidelMethod;
 
@@ -7,18 +7,13 @@ public class EntryPoint {
     public static void main(String[] args) {
         final double[][] matrix = Utils.buildRandomMatrix();
         final double[][] hilbertMatrix = Utils.buildRandomHilbertMatrix();
-        final double[] vectorB = Utils.buildVectorB();
+        final double[] vectorB = Utils.buildVectorB(matrix);
 
-        //for random matrix
+        System.out.println("Gauss method result: ");
+        new GaussMethod(matrix, vectorB);
         System.out.println("Jacobi method result: ");
-        AbstractMethod jacobi = new JacobiMethod(matrix, vectorB);
+        new JacobiMethod(matrix, vectorB);
         System.out.println("Seidel method result: ");
-        AbstractMethod seidel = new SeidelMethod(matrix, vectorB);
-
-        //for hilbert matrix
-        System.out.println("Jacobi method result: ");
-        AbstractMethod jacobiHilbert = new JacobiMethod(hilbertMatrix, vectorB);
-        System.out.println("Seidel method result: ");
-        AbstractMethod seidelHilbert = new SeidelMethod(hilbertMatrix, vectorB);
+        new SeidelMethod(matrix, vectorB);
     }
 }
