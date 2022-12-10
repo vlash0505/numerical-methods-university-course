@@ -4,19 +4,12 @@ import parsing.Serializer;
 
 import java.io.File;
 
-public class PageRankIterative {
+public class PageRankIterative extends PageRankAbstract {
     private static final double DAMPING_FACTOR = 0.5;
-
     private static int CURRENT_STEP = 1;
 
-    private final int SIZE;
-    public final int[][] adjacencyMatrix;
-    public final double[] result;
-
     public PageRankIterative(File config) {
-        adjacencyMatrix = Serializer.parsePRConfig(config);
-        SIZE = adjacencyMatrix.length;
-        result = new double[SIZE];
+        super(config);
 
         buildResult();
     }
@@ -25,20 +18,19 @@ public class PageRankIterative {
         double givenLinks;
         int externalNodeIndex;
         int internalNodeIndex;
-        System.out.println("RESULTING SIZE: " + SIZE);
         while (CURRENT_STEP <= 2) {
-            double[] temp = new double[SIZE];
-            for (int k = 0; k < SIZE; k++) {
+            double[] temp = new double[size];
+            for (int k = 0; k < size; k++) {
                 temp[k] = this.result[k];
                 this.result[k] = 0;
             }
 
-            for (internalNodeIndex = 0; internalNodeIndex < SIZE; internalNodeIndex++) {
-                for (externalNodeIndex = 0; externalNodeIndex < SIZE; externalNodeIndex++) {
+            for (internalNodeIndex = 0; internalNodeIndex < size; internalNodeIndex++) {
+                for (externalNodeIndex = 0; externalNodeIndex < size; externalNodeIndex++) {
                     if (this.adjacencyMatrix[externalNodeIndex][internalNodeIndex] == 1) {
                         int k = 0;
                         givenLinks = 0;
-                        while (k < SIZE) {
+                        while (k < size) {
                             if (this.adjacencyMatrix[externalNodeIndex][k] == 1) {
                                 givenLinks++;
                             }
@@ -55,14 +47,14 @@ public class PageRankIterative {
     }
 
     private void addDampingFactor() {
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             this.result[i] = (1 - DAMPING_FACTOR) + DAMPING_FACTOR * this.result[i];
         }
     }
 
     private void printResult() {
         System.out.println("\n Result : \n");
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.printf("" + i + " : " + this.result[i] + "\n");
         }
     }
